@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  functions = "src/functions"
+  publish = "src"
+
+[[redirects]]
+  from = "/api/news"
+  to = "/.netlify/functions/fetch-news"
+  status = 200

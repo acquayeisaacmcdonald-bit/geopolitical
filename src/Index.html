@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geopolitical Command Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: #c8102e;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .news-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .impact-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .catastrophic { background: #c8102e; color: white; }
+        .medium { background: #ffa500; color: white; }
+        .low { background: #4caf50; color: white; }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 50px;
+            color: #c8102e;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>⚡ GEOPOLITICAL COMMAND CENTER</h1>
+            <p>Live updates from the Iran-Israel conflict</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Stats will appear here -->
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="stat-label">Loading...</div>
+            </div>
+        </div>
+
+        <!-- News will appear here -->
+        <div class="news-grid" id="newsGrid">
+            <div class="loading">Fetching latest intelligence...</div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Geopolitical Command Center • Data from Notion</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript to fetch and display news
+        async function loadNews() {
+            try {
+                // Show loading
+                document.getElementById('newsGrid').innerHTML = '<div class="loading">Loading...</div>';
+                
+                // Fetch from our API
+                const response = await fetch('/api/news');
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayNews(data.news);
+                    displayStats(data.stats);
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (error) {
+                document.getElementById('newsGrid').innerHTML = 
+                    `<div class="error">❌ Error: ${error.message}</div>`;
+            }
+        }
+
+        function displayStats(stats) {
+            const statsHtml = `
+                <div class="stat-card">
+                    <div class="stat-label">Total Articles</div>
+                    <div class="stat-value">${stats.totalArticles}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Catastrophic Events</div>
+                    <div class="stat-value">${stats.catastrophicCount}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Avg Oil Price</div>
+                    <div class="stat-value">$${stats.averageOilPrice.toFixed(2)}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Casualties</div>
+                    <div class="stat-value">${stats.totalCasualties.toLocaleString()}</div>
+                </div>
+            `;
+            
+            document.getElementById('stats').innerHTML = statsHtml;
+        }
+
+        function displayNews(news) {
+            if (!news || news.length === 0) {
+                document.getElementById('newsGrid').innerHTML = '<div class="loading">No news available</div>';
+                return;
+            }
+
+            const newsHtml = news.map(item => `
+                <div class="news-card">
+                    <div>
+                        <span class="impact-badge ${item.impact?.toLowerCase()}">
+                            ${item.impact || 'Unknown'}
+                        </span>
+                        <span class="meta">${new Date(item.publishDate).toLocaleDateString()}</span>
+                    </div>
+                    <h3>${item.title}</h3>
+                    <div class="meta">
+                        🛢️ Oil: $${item.oilPrice || 'N/A'} • 
+                        ⚔️ Casualties: ${item.casualties?.toLocaleString() || 'N/A'}
+                    </div>
+                    ${item.affiliateId ? 
+                        '<p><small>📘 Sponsored content</small></p>' : 
+                        ''}
+                </div>
+            `).join('');
+            
+            document.getElementById('newsGrid').innerHTML = newsHtml;
+        }
+
+        // Load news when page loads
+        loadNews();
+
+        // Refresh every 5 minutes
+        setInterval(loadNews, 300000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "geopolitical-news-command-center",
+  "version": "1.0.0",
+  "description": "Live war updates from Notion",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Building static site...'",
+    "dev": "npx http-server src"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.14"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
