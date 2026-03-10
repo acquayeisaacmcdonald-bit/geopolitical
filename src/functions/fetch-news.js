@@ -14,7 +14,7 @@ exports.handler = async (event) => {
     });
 
     // IMPORTANT: You'll replace this with your actual database ID
-    const databaseId = "31f4218fc5ae80149056e3ef7835e907"
+    const databaseId = "31f4218fc5ae80459902e0d2446da025"
 
     // Get data from Notion
     const response = await notion.databases.query({
