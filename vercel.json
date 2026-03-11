@@ -2,5 +2,10 @@
   "buildCommand": null,
   "outputDirectory": "src",
   "devCommand": null,
-  "installCommand": null
+  "installCommand": null,
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/", "dest": "/src/index.html" },
+    { "src": "/(.*)", "dest": "/src/$1" }
+  ]
 }
