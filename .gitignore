@@ -6,3 +6,5 @@ build/
 *.log
 # Local Netlify folder
 .netlify
+
+.vercel
