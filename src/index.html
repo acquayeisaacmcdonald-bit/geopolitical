@@ -166,12 +166,18 @@ function submitAIQuestion() {
     const email = document.getElementById('aiEmail').value;
     const question = document.getElementById('aiQuestion').value;
     
+    // Don't submit empty forms
+    if (!email || !question) {
+        alert('Please fill in both email and question');
+        return;
+    }
+    
     // Show loading
     document.getElementById('aiResponse').style.display = 'block';
     document.getElementById('aiResponse').innerHTML = '🤖 Thinking...';
     
-    // Send to Make.com webhook (you'll set this up)
-    fetch('https://hook.make.com/YOUR_WEBHOOK_URL', {
+    // Send to Make.com webhook
+    fetch('https://hook.eu1.make.com/mybslrthkyx2pobxri3gka4twn6qlwdi', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, question, page: 'reading-list' })
