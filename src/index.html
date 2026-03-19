@@ -46,6 +46,7 @@
 <a href="/reports.html">REPORTS</a>
 <a href="#shop" class="nav-shop">SHOP</a>
 <a href="/geopolitics-reading-list.html">📚 READING LIST</a>
+</div>
 <div class="nav-right">
                 <span class="live-indicator">🔴 LIVE</span>
                 <button class="theme-toggle" id="themeToggle">
@@ -147,6 +148,43 @@
             <!-- Live updates will stream here -->
         </div>
     </div>
+<!-- AI Question Form -->
+<div class="ai-form-container" style="background: var(--bg-secondary, #f8fafc); padding: 30px; border-radius: 10px; margin: 40px 0;">
+    <h3 style="color: #c8102e; margin-bottom: 15px;">🤖 Ask Our Geopolitical AI</h3>
+    <p style="margin-bottom: 20px;">Have a question about the conflict? Ask our AI assistant (powered by your reading list books).</p>
+    
+    <form id="aiQuestionForm" onsubmit="event.preventDefault(); submitAIQuestion();">
+        <input type="email" id="aiEmail" placeholder="Your email (for response)" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 5px;">
+        <textarea id="aiQuestion" placeholder="Your question..." rows="3" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 5px;"></textarea>
+        <button type="submit" style="background: #c8102e; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Ask AI →</button>
+    </form>
+    <div id="aiResponse" style="margin-top: 20px; padding: 15px; background: white; border-radius: 5px; display: none;"></div>
+</div>
+
+<script>
+function submitAIQuestion() {
+    const email = document.getElementById('aiEmail').value;
+    const question = document.getElementById('aiQuestion').value;
+    
+    // Show loading
+    document.getElementById('aiResponse').style.display = 'block';
+    document.getElementById('aiResponse').innerHTML = '🤖 Thinking...';
+    
+    // Send to Make.com webhook (you'll set this up)
+    fetch('https://hook.make.com/YOUR_WEBHOOK_URL', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, question, page: 'reading-list' })
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('aiResponse').innerHTML = data;
+    })
+    .catch(error => {
+        document.getElementById('aiResponse').innerHTML = '❌ Error. Please try again.';
+    });
+}
+</script>
 
     <!-- Footer -->
     <footer class="footer">

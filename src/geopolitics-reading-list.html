@@ -363,20 +363,27 @@
             </div>
         </div>
 
-        <!-- Newsletter Signup -->
-        <div class="newsletter-box">
-            <h3>📥 Get My Reading Notes</h3>
-            <p>Subscribe and I'll send you a one-page summary of the key insights from these 5 books.</p>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Newsletter coming soon!');">
-                <input type="email" placeholder="Your email address" required>
-                <button type="submit" class="btn">Send Me the Notes</button>
-            </form>
-        </div>
-
         <div class="affiliate-disclosure">
             As an Amazon Associate, I earn from qualifying purchases. This helps keep my analysis free for everyone.
         </div>
+        <!-- Newsletter Signup Form -->
+      <div class="newsletter-signup" style="background: linear-gradient(135deg, #0f2b4b, #1e3a5f); color: white; padding: 40px; border-radius: 10px; margin: 40px 0;">
+    <h3 style="font-size: 2rem; margin-bottom: 15px;">📧 Geopolitical Briefing</h3>
+    <p style="font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9;">Weekly analysis + book recommendations + exclusive content. No spam, unsubscribe anytime.</p>
+    
+    <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="max-width: 500px; margin: 0 auto;">
+        <input type="hidden" name="form-name" value="newsletter" />
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+        
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input type="email" name="email" placeholder="Your email address" required style="flex: 1; min-width: 250px; padding: 12px 15px; border: none; border-radius: 5px; font-size: 1rem;">
+            <button type="submit" style="background: #fbbf24; color: #0f2b4b; padding: 12px 30px; border: none; border-radius: 5px; font-weight: 700; cursor: pointer;">Subscribe</button>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.8;">By subscribing, you agree to receive weekly geopolitical analysis. Unsubscribe anytime.</p>
+    </form>
+</div>
     </main>
+
 
     <!-- Footer (copy from main site) -->
     <footer class="footer">
