@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
       filter: {
         property: 'Status',
         select: {
-          equals: 'Live'
+          equals: 'live'
         }
       },
       sorts: [
