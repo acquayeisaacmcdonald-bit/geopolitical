@@ -3,13 +3,8 @@
   "outputDirectory": "src",
   "devCommand": null,
   "installCommand": null,
-  "functions": {
-    "src/functions/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "routes": [
-    { "src": "/api/news", "dest": "/src/functions/fetch-news.js" },
+    { "src": "/api/news", "dest": "/api/news.js" },
     { "handle": "filesystem" },
     { "src": "/", "dest": "/src/index.html" },
     { "src": "/(.*)", "dest": "/src/$1" }
