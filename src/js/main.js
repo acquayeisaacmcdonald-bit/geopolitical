@@ -106,14 +106,21 @@ function displayNews(news) {
 
 // Update ticker
 function updateTicker(data) {
-    const ticker = document.querySelector('.ticker');
+    // Try to get by ID first (your new setup), fallback to class (old setup)
+    const ticker = document.getElementById('dynamic-ticker') || document.querySelector('.ticker');
     if (!ticker) return;
 
+    // Get the latest breaking headline
+    const breakingHeadline = data.news?.[0]?.title || 'Iran-Israel War Update';
+    const oilPrice = data.stats?.averageOilPrice?.toFixed(2) || '112';
+    const casualties = data.stats?.totalCasualties?.toLocaleString() || '13,000';
+    const catastrophicCount = data.stats?.catastrophicCount || 0;
+
     const items = [
-        `🚨 BREAKING: Iran-Israel War Update`,
-        `🛢️ OIL: $${data.stats?.averageOilPrice?.toFixed(2) || '89.50'}`,
-        `⚔️ CASUALTIES: ${data.stats?.totalCasualties?.toLocaleString() || '12,847'}`,
-        `🌍 IMPACT: ${data.stats?.catastrophicCount > 0 ? 'CATASTROPHIC' : 'ELEVATED'}`,
+        `🚨 BREAKING: ${breakingHeadline}`,
+        `🛢️ OIL: $${oilPrice}`,
+        `⚔️ CASUALTIES: ${casualties} confirmed`,
+        `🌍 CATASTROPHIC EVENTS: ${catastrophicCount}`,
         `📡 LIVE: Latest developments`
     ];
     
