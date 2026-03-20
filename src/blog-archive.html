@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Archive · Geopolitical Command Center</title>
+    <meta name="description" content="Complete archive of analysis, commentary, and insights on the Iran-Israel conflict, drone warfare, oil markets, and global geopolitics.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SKJD3WK235"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SKJD3WK235');
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Main site CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        /* Blog Archive Styles */
+        .archive-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .archive-header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border, #e2e8f0);
+            padding-bottom: 20px;
+        }
+        
+        .archive-header h1 {
+            font-size: 2.5rem;
+            color: #c8102e;
+            margin-bottom: 10px;
+        }
+        
+        .archive-header p {
+            color: var(--text-secondary, #666);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .blog-card {
+            background: var(--card-bg, white);
+            border: 1px solid var(--border, #e2e8f0);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .blog-card-image {
+            height: 180px;
+            background: linear-gradient(135deg, #0f2b4b, #1e3a5f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .blog-card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card-category {
+            font-size: 0.7rem;
+            color: #c8102e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .blog-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .blog-card-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary, #666);
+            margin-bottom: 10px;
+        }
+        
+        .blog-card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-secondary, #666);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .read-more {
+            color: #c8102e;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: auto;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .page-link {
+            display: inline-block;
+            padding: 8px 12px;
+            background: var(--bg-secondary, #f8fafc);
+            border: 1px solid var(--border, #e2e8f0);
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--text-primary, #1e293b);
+        }
+        
+        .page-link.active {
+            background: #c8102e;
+            color: white;
+            border-color: #c8102e;
+        }
+        
+        .page-link:hover {
+            background: #c8102e;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Breaking News Ticker (Auto-updates) -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <!-- JavaScript will populate this -->
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">GEOPOLITICAL<span class="highlight">COMMAND</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="/">LIVE</a>
+                <a href="/analysis.html">ANALYSIS</a>
+                <a href="/videos.html">VIDEOS</a>
+                <a href="/reports.html">REPORTS</a>
+                <a href="/blog.html">BLOG</a>
+                <a href="/geopolitics-reading-list.html">📚 READING LIST</a>
+                <a href="#shop" class="nav-shop">SHOP</a>
+            </div>
+            <div class="nav-right">
+                <span class="live-indicator">🔴 LIVE</span>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Archive Content -->
+    <main class="archive-container">
+        <div class="archive-header">
+            <h1>📰 Complete Blog Archive</h1>
+            <p>20+ in-depth articles on the Iran-Israel conflict, drone warfare, oil markets, and global security.</p>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Article 1 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Analysis</div>
+                    <h3>Why the Strait of Hormuz Matters More Than Ever</h3>
+                    <div class="blog-card-date">March 20, 2026 • 8 min read</div>
+                    <p class="blog-card-excerpt">Twenty percent of global oil passes through the Strait of Hormuz. Now it's a war zone. Here's what happens if it closes — and why shipping costs have already doubled.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-drone"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Drone Warfare</div>
+                    <h3>Iran's Shahed-136 vs Israel's Hermes 900: A Technical Comparison</h3>
+                    <div class="blog-card-date">March 18, 2026 • 6 min read</div>
+                    <p class="blog-card-excerpt">How these two UAVs are changing the battlefield and what their success rates tell us about the conflict's trajectory.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Oil Markets</div>
+                    <h3>Oil at $95: What Investors Need to Watch Next Week</h3>
+                    <div class="blog-card-date">March 17, 2026 • 5 min read</div>
+                    <p class="blog-card-excerpt">With Brent crossing $95 and shipping costs soaring, here's what the next 7 days could bring for energy markets.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Analysis</div>
+                    <h3>Iran's Internal Fragility: 3 Scenarios for the Coming Months</h3>
+                    <div class="blog-card-date">March 15, 2026 • 10 min read</div>
+                    <p class="blog-card-excerpt">From hard-line entrenchment to civil war — what happens inside Iran will determine the war's outcome.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-ship"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Shipping</div>
+                    <h3>The "Distance Tax": How Rerouting Ships Is Driving Up Costs</h3>
+                    <div class="blog-card-date">March 14, 2026 • 7 min read</div>
+                    <p class="blog-card-excerpt">Every container rerouted around Africa adds 10-14 days to transit times. What this means for electronics, autos, and retail.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Security</div>
+                    <h3>How Iron Dome Works — And Why It's Stretched Thin</h3>
+                    <div class="blog-card-date">March 12, 2026 • 8 min read</div>
+                    <p class="blog-card-excerpt">With drone swarms overwhelming defenses, can Israel's missile defense system hold?</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 7 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-gas-pump"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Oil Markets</div>
+                    <h3>The $90 Oil Shock: How It's Affecting Airlines and Shipping</h3>
+                    <div class="blog-card-date">March 10, 2026 • 6 min read</div>
+                    <p class="blog-card-excerpt">Jet fuel at $4.12/gallon. Shipping costs doubled. How the energy crisis is rippling through global supply chains.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 8 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-flag"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Geopolitics</div>
+                    <h3>Gulf States Walk a Tightrope: Public Opinion vs. Strategic Interest</h3>
+                    <div class="blog-card-date">March 8, 2026 • 7 min read</div>
+                    <p class="blog-card-excerpt">Saudi and UAE leaders face pressure from Washington while 87% of their populations oppose normalization with Israel.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 9 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Book Review</div>
+                    <h3>Review: Prisoners of Geography by Tim Marshall (2025 Edition)</h3>
+                    <div class="blog-card-date">March 5, 2026 • 4 min read</div>
+                    <p class="blog-card-excerpt">Why this updated classic is essential reading for understanding the Iran-Israel conflict.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 10 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-truck-moving"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Logistics</div>
+                    <h3>Supply Chains Under Fire: The Cost of Rerouting Around Conflict Zones</h3>
+                    <div class="blog-card-date">March 3, 2026 • 9 min read</div>
+                    <p class="blog-card-excerpt">How war in the Middle East is disrupting global trade from Asia to Europe.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 11 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-diploma"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Analysis</div>
+                    <h3>US-Israel Alliance: What's Changed Since October 7?</h3>
+                    <div class="blog-card-date">February 28, 2026 • 10 min read</div>
+                    <p class="blog-card-excerpt">How the dynamics of the US-Israel relationship have shifted over the past five months.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 12 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-china"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Geopolitics</div>
+                    <h3>China's Role: Beijing's Delicate Balance in the Iran-Israel Conflict</h3>
+                    <div class="blog-card-date">February 25, 2026 • 8 min read</div>
+                    <p class="blog-card-excerpt">Why China is demanding safety guarantees for its vessels — and what that means for the conflict.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 13 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Technology</div>
+                    <h3>Electronic Warfare: The Invisible Battlefield</h3>
+                    <div class="blog-card-date">February 22, 2026 • 7 min read</div>
+                    <p class="blog-card-excerpt">How both sides are using jamming, spoofing, and cyber attacks to gain advantage.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 14 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-bread-slice"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Economy</div>
+                    <h3>Food Security at Risk: How War Affects Wheat and Grain Prices</h3>
+                    <div class="blog-card-date">February 19, 2026 • 6 min read</div>
+                    <p class="blog-card-excerpt">The conflict threatens grain supplies from the Black Sea region and beyond.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 15 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Finance</div>
+                    <h3>Gold, Crypto, and Safe Havens: Where Investors Are Putting Money</h3>
+                    <div class="blog-card-date">February 16, 2026 • 7 min read</div>
+                    <p class="blog-card-excerpt">How geopolitical risk is driving capital to traditional and new safe-haven assets.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 16 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Society</div>
+                    <h3>Displaced: The Human Cost of Conflict</h3>
+                    <div class="blog-card-date">February 13, 2026 • 5 min read</div>
+                    <p class="blog-card-excerpt">Over 340,000 civilians displaced. A look at the humanitarian crisis unfolding.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 17 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Media</div>
+                    <h3>War and Propaganda: How Both Sides Are Framing the Narrative</h3>
+                    <div class="blog-card-date">February 10, 2026 • 8 min read</div>
+                    <p class="blog-card-excerpt">Analysis of media coverage and information warfare in the conflict.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 18 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Analysis</div>
+                    <h3>The War's Global Impact: From Asia to Europe</h3>
+                    <div class="blog-card-date">February 7, 2026 • 9 min read</div>
+                    <p class="blog-card-excerpt">How the conflict is reshaping alliances and economics far beyond the Middle East.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 19 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Energy</div>
+                    <h3>Beyond Oil: How Natural Gas and Renewable Energy Are Affected</h3>
+                    <div class="blog-card-date">February 4, 2026 • 6 min read</div>
+                    <p class="blog-card-excerpt">The conflict's impact on global energy transition and natural gas markets.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 20 -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <i class="fas fa-church"></i>
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-category">Religion & Culture</div>
+                    <h3>Jerusalem, Holy Sites, and the War's Spiritual Dimension</h3>
+                    <div class="blog-card-date">February 1, 2026 • 7 min read</div>
+                    <p class="blog-card-excerpt">How religious sites and symbolism play a role in the conflict's narrative.</p>
+                    <a href="#" class="read-more">Read Full Article →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">Next →</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>GEOPOLITICAL COMMAND</h4>
+                <p>Real-time intelligence from the Iran-Israel conflict. Updated via Notion API.</p>
+            </div>
+            <div class="footer-section">
+                <h4>MONETIZATION</h4>
+                <ul>
+                    <li><a href="https://isaacapp1.gumroad.com/l/pobvti" target="_blank">📘 War Reports (Gumroad)</a></li>
+                    <li><a href="#">🎬 Video Scripts</a></li>
+                    <li><a href="#">🛡️ Survival Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>LEGAL</h4>
+                <ul>
+                    <li><a href="#">Affiliate Disclosure</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Geopolitical Command Center. Data sourced from Notion • Built for Vercel</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        // Theme toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-moon');
+                        icon.classList.toggle('fa-sun');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
