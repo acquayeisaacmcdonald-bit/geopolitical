@@ -1,6 +1,6 @@
 const { Client } = require('@notionhq/client');
 
-exports.handler = async (event) => {
+module.exports = async (req, res) => {
   // Allow anyone to access this API
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -9,12 +9,12 @@ exports.handler = async (event) => {
 
   try {
     // Connect to Notion
-    const notion = new Client({ 
-      auth: process.env.NOTION_API_KEY 
+    const notion = new Client({
+      auth: process.env.NOTION_API_KEY
     });
 
-    // IMPORTANT: You'll replace this with your actual database ID
-    const databaseId = "31f4218fc5ae80459902e0d2446da025"
+    // Your database ID
+    const databaseId = "31f4218fc5ae80459902e0d2446da025";
 
     // Get data from Notion
     const response = await notion.databases.query({
@@ -72,28 +72,18 @@ exports.handler = async (event) => {
     };
 
     // Send back the data
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ 
-        success: true,
-        news: newsItems,
-        stats,
-        timestamp: new Date().toISOString()
-      })
-    };
+    res.status(200).json({
+      success: true,
+      news: newsItems,
+      stats,
+      timestamp: new Date().toISOString()
+    });
 
   } catch (error) {
-    // If something goes wrong
     console.error('Error:', error);
-    
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ 
-        success: false, 
-        error: error.message 
-      })
-    };
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 };
