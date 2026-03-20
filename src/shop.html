@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop · Geopolitical Command Center</title>
+    <meta name="description" content="Exclusive geopolitical intelligence reports, analysis books, and premium content. Support independent journalism on the Iran-Israel conflict.">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SKJD3WK235"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SKJD3WK235');
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Main site CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        /* Shop specific styles */
+        .shop-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .shop-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .shop-header h1 {
+            font-size: 2.5rem;
+            color: #c8102e;
+            margin-bottom: 15px;
+        }
+        
+        .shop-header p {
+            color: var(--text-secondary, #666);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Hero Product */
+        .hero-product {
+            background: linear-gradient(135deg, #0f2b4b, #1e3a5f);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .hero-product h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .hero-product .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin: 20px 0;
+        }
+        
+        .hero-product .original-price {
+            font-size: 1rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-left: 10px;
+        }
+        
+        .hero-product .btn-buy {
+            display: inline-block;
+            background: #fbbf24;
+            color: #0f2b4b;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .hero-product .btn-buy:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero-product ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .hero-product li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-product li i {
+            color: #fbbf24;
+        }
+        
+        /* Products Grid */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background: var(--card-bg, white);
+            border: 1px solid var(--border, #e2e8f0);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-icon {
+            background: linear-gradient(135deg, #0f2b4b, #1e3a5f);
+            padding: 30px;
+            text-align: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .product-info {
+            padding: 25px;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #c8102e;
+            margin: 15px 0;
+        }
+        
+        .product-description {
+            color: var(--text-secondary, #666);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-product {
+            display: block;
+            background: #c8102e;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .btn-product:hover {
+            background: #a00d26;
+        }
+        
+        /* Membership Section */
+        .membership-section {
+            background: var(--bg-secondary, #f8fafc);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            text-align: center;
+            border: 1px solid var(--border, #e2e8f0);
+        }
+        
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .membership-card {
+            background: var(--card-bg, white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--border, #e2e8f0);
+        }
+        
+        .membership-card.popular {
+            border: 2px solid #fbbf24;
+            transform: scale(1.05);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fbbf24;
+            color: #0f2b4b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .membership-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #c8102e;
+            margin: 20px 0;
+        }
+        
+        .membership-price span {
+            font-size: 1rem;
+            color: var(--text-secondary, #666);
+        }
+        
+        .membership-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .membership-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .membership-features i {
+            color: #fbbf24;
+        }
+        
+        .btn-membership {
+            display: block;
+            background: #c8102e;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        /* Guarantee Section */
+        .guarantee {
+            text-align: center;
+            padding: 40px;
+            background: var(--card-bg, white);
+            border-radius: 10px;
+            border: 1px solid var(--border, #e2e8f0);
+            margin-top: 40px;
+        }
+        
+        .guarantee i {
+            font-size: 3rem;
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-product {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+            
+            .products-grid,
+            .membership-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .membership-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Breaking News Ticker (Auto-updates) -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <!-- JavaScript populates this -->
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">GEOPOLITICAL<span class="highlight">COMMAND</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="/">LIVE</a>
+                <a href="/analysis.html">ANALYSIS</a>
+                <a href="/videos.html">VIDEOS</a>
+                <a href="/reports.html">REPORTS</a>
+                <a href="/blog-archive.html">BLOG</a>
+                <a href="/geopolitics-reading-list.html">📚 READING LIST</a>
+                <a href="/shop.html" class="active nav-shop">SHOP</a>
+            </div>
+            <div class="nav-right">
+                <span class="live-indicator">🔴 LIVE</span>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="shop-container">
+        <div class="shop-header">
+            <h1>💰 Geopolitical Intelligence Shop</h1>
+            <p>Exclusive reports, analysis, and tools for serious geopolitical investors and analysts.</p>
+        </div>
+
+        <!-- Hero Product: Main Ebook -->
+        <div class="hero-product">
+            <div>
+                <h2>Iran-Israel War: Complete Analysis 2026</h2>
+                <p>The definitive 16-page intelligence brief on the conflict. Used by investors, journalists, and policy analysts.</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Drone warfare tactics revealed</li>
+                    <li><i class="fas fa-check-circle"></i> Oil price predictions through 2026</li>
+                    <li><i class="fas fa-check-circle"></i> 3 critical flashpoints with risk analysis</li>
+                    <li><i class="fas fa-check-circle"></i> Complete 7-day conflict timeline</li>
+                </ul>
+                <div class="price">
+                    $4.99 <span class="original-price">$19.99</span>
+                </div>
+                <a href="https://isaacapp1.gumroad.com/l/pobvti" target="_blank" class="btn-buy">Get Instant Access →</a>
+            </div>
+            <div style="text-align: center;">
+                <i class="fas fa-file-alt" style="font-size: 8rem; opacity: 0.8;"></i>
+                <p style="margin-top: 20px;">⚡ Instant PDF Download</p>
+                <p>📱 Read on any device</p>
+                <p>🔄 Free updates for 30 days</p>
+            </div>
+        </div>
+
+        <!-- Other Products Grid -->
+        <h2 class="section-title">📚 More Intelligence Products</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Oil Markets During Wartime</h3>
+                    <div class="product-price">$7.99</div>
+                    <p class="product-description">How geopolitical risk affects WTI, Brent, and your portfolio. Includes 30-day price forecast and trading strategies.</p>
+                    <a href="#" class="btn-product" onclick="alert('Coming soon! Subscribe to newsletter for launch.')">Pre-Order →</a>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-drone"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Drone Warfare: Tactics & Technology</h3>
+                    <div class="product-price">$6.99</div>
+                    <p class="product-description">Deep dive into Shahed-136, Hermes 900, and how drone warfare is changing modern combat. 18-page technical analysis.</p>
+                    <a href="#" class="btn-product" onclick="alert('Coming soon! Subscribe to newsletter for launch.')">Pre-Order →</a>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Strait of Hormuz: The Global Chokepoint</h3>
+                    <div class="product-price">$5.99</div>
+                    <p class="product-description">Strategic analysis of the world's most critical energy artery. What happens if it closes and how to prepare.</p>
+                    <a href="#" class="btn-product" onclick="alert('Coming soon! Subscribe to newsletter for launch.')">Pre-Order →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Membership Section -->
+        <div class="membership-section">
+            <h2>🎖️ Join the Intelligence Network</h2>
+            <p>Exclusive weekly briefings, private community access, and early access to all reports.</p>
+            
+            <div class="membership-grid">
+                <!-- Basic Tier -->
+                <div class="membership-card">
+                    <h3>Intelligence Brief</h3>
+                    <div class="membership-price">$5<span>/month</span></div>
+                    <ul class="membership-features">
+                        <li><i class="fas fa-check"></i> Weekly email briefing</li>
+                        <li><i class="fas fa-check"></i> Ad-free reading</li>
+                        <li><i class="fas fa-check"></i> Book recommendations</li>
+                    </ul>
+                    <a href="#" class="btn-membership" onclick="alert('Subscribe via Buy Me a Coffee!')">Subscribe →</a>
+                </div>
+
+                <!-- Pro Tier (Popular) -->
+                <div class="membership-card popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3>Analyst Tier</h3>
+                    <div class="membership-price">$15<span>/month</span></div>
+                    <ul class="membership-features">
+                        <li><i class="fas fa-check"></i> Everything in Basic</li>
+                        <li><i class="fas fa-check"></i> Monthly deep-dive report</li>
+                        <li><i class="fas fa-check"></i> Private Discord access</li>
+                        <li><i class="fas fa-check"></i> Q&A with Isaac</li>
+                    </ul>
+                    <a href="#" class="btn-membership" onclick="alert('Subscribe via Buy Me a Coffee!')">Join Now →</a>
+                </div>
+
+                <!-- Premium Tier -->
+                <div class="membership-card">
+                    <h3>Institutional Tier</h3>
+                    <div class="membership-price">$50<span>/month</span></div>
+                    <ul class="membership-features">
+                        <li><i class="fas fa-check"></i> Everything in Analyst</li>
+                        <li><i class="fas fa-check"></i> Custom research requests</li>
+                        <li><i class="fas fa-check"></i> Quarterly strategy calls</li>
+                        <li><i class="fas fa-check"></i> White-label reports</li>
+                    </ul>
+                    <a href="#" class="btn-membership" onclick="alert('Contact isaac.apptest1@gmail.com for institutional access.')">Contact Us →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Affiliate Products -->
+        <h2 class="section-title">🛡️ Tools We Recommend</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="product-info">
+                    <h3>ExpressVPN</h3>
+                    <div class="product-price">From $6.67/mo</div>
+                    <p class="product-description">Protect your privacy. Used by journalists covering conflict zones. 30-day money-back guarantee.</p>
+                    <a href="#" class="btn-product" onclick="alert('Affiliate link coming soon!')">Get ExpressVPN →</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Prisoners of Geography</h3>
+                    <div class="product-price">$14.99</div>
+                    <p class="product-description">The essential book on geopolitics. Updated 2025 edition covers Iran-Israel, Ukraine, and China-Taiwan.</p>
+                    <a href="#" class="btn-product" onclick="alert('Amazon affiliate link coming soon!')">Buy on Amazon →</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-chart-simple"></i>
+                </div>
+                <div class="product-info">
+                    <h3>TradingView</h3>
+                    <div class="product-price">Free - $14.95/mo</div>
+                    <p class="product-description">Track oil prices, gold, and currency markets affected by geopolitical events.</p>
+                    <a href="#" class="btn-product" onclick="alert('Affiliate link coming soon!')">Start Trading →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guarantee -->
+        <div class="guarantee">
+            <i class="fas fa-shield-heart"></i>
+            <h3>100% Money-Back Guarantee</h3>
+            <p>Not satisfied with any purchase? Contact us within 30 days for a full refund. No questions asked.</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">📧 isaac.apptest1@gmail.com</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>GEOPOLITICAL COMMAND</h4>
+                <p>Real-time intelligence from the Iran-Israel conflict. Updated via Notion API.</p>
+            </div>
+            <div class="footer-section">
+                <h4>MONETIZATION</h4>
+                <ul>
+                    <li><a href="https://isaacapp1.gumroad.com/l/pobvti" target="_blank">📘 War Reports (Gumroad)</a></li>
+                    <li><a href="/shop.html">🛒 Shop All Products</a></li>
+                    <li><a href="#">🎬 Video Scripts</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>LEGAL</h4>
+                <ul>
+                    <li><a href="#">Affiliate Disclosure</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Geopolitical Command Center. Data sourced from Notion • Built for Vercel</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-moon');
+                        icon.classList.toggle('fa-sun');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
