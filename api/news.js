@@ -28,7 +28,6 @@ module.exports = async (req, res) => {
       const title = getText(page.properties.Name);
       const cleanSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-      // Get URL from the 'originalURL' column
       let originalUrl = null;
       if (page.properties.originalURL && page.properties.originalURL.url) {
         originalUrl = page.properties.originalURL.url;
