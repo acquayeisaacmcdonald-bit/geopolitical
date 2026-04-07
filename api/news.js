@@ -2,10 +2,7 @@ const { Client } = require('@notionhq/client');
 
 module.exports = async (req, res) => {
   try {
-    const notion = new Client({
-      auth: process.env.NOTION_API_KEY
-    });
-
+    const notion = new Client({ auth: process.env.NOTION_API_KEY });
     const databaseId = "31f4218fc5ae80459902e0d2446da025";
 
     const response = await notion.databases.query({
@@ -16,6 +13,7 @@ module.exports = async (req, res) => {
     });
 
     const newsItems = response.results.map(page => {
+      // Helper functions
       const getText = (prop) => {
         if (!prop) return '';
         if (prop.title) return prop.title[0]?.plain_text || '';
@@ -25,14 +23,19 @@ module.exports = async (req, res) => {
       const getSelect = (prop) => prop?.select?.name || '';
       const getNumber = (prop) => prop?.number || null;
 
+      // Intelligent URL finder
+      let originalUrl = null;
+      const possibleUrlFields = ['Original URL', 'URL', 'Link', 'Source', 'original_url', 'url', 'link'];
+      for (const fieldName of possibleUrlFields) {
+        const prop = page.properties[fieldName];
+        if (prop && prop.url) {
+          originalUrl = prop.url;
+          break;
+        }
+      }
+
       const title = getText(page.properties.Name);
       const cleanSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-
-      // Direct URL extraction
-      let originalUrl = null;
-      if (page.properties['Original URL'] && page.properties['Original URL'].url) {
-        originalUrl = page.properties['Original URL'].url;
-      }
 
       return {
         title: title,
