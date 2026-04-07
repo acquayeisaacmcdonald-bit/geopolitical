@@ -24,19 +24,14 @@ module.exports = async (req, res) => {
       };
       const getSelect = (prop) => prop?.select?.name || '';
       const getNumber = (prop) => prop?.number || null;
-      
-      const getUrl = (prop) => {
-        if (!prop) return null;
-        if (prop.url) return prop.url;
-        if (prop.rich_text && prop.rich_text[0]) {
-          const text = prop.rich_text[0].plain_text;
-          if (text && text.startsWith('http')) return text;
-        }
-        return null;
-      };
 
       const title = getText(page.properties.Name);
       const cleanSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+      let originalUrl = null;
+      if (page.properties['Original URL'] && page.properties['Original URL'].url) {
+        originalUrl = page.properties['Original URL'].url;
+      }
 
       return {
         title: title,
@@ -46,7 +41,7 @@ module.exports = async (req, res) => {
         affiliateId: getText(page.properties['Affiliate Link ID']),
         casualties: getNumber(page.properties['Casualty Count (Est.)']),
         publishDate: page.properties['Publish Date']?.date?.start || null,
-        originalUrl: getUrl(page.properties['Original URL'])
+        originalUrl: originalUrl
       };
     });
 
