@@ -47,7 +47,8 @@ module.exports = async (req, res) => {
       };
 
       const getUrl = (prop) => {
-        return prop?.url || null;
+        if (!prop) return null;
+        return prop.url || null;
       };
 
       const title = getText(page.properties.Name);
@@ -63,7 +64,7 @@ module.exports = async (req, res) => {
         affiliateId: getText(page.properties['Affiliate Link ID']),
         casualties: getNumber(page.properties['Casualty Count (Est.)']),
         publishDate: page.properties['Publish Date']?.date?.start || null,
-        originalUrl: getUrl(page.properties['Original URL'])
+        originalUrl: getUrl(page.properties['Original URL'])  // ← Space is correct
       };
     });
 
