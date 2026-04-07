@@ -1,22 +1,18 @@
 const { Client } = require('@notionhq/client');
 
 module.exports = async (req, res) => {
-  // Allow anyone to access this API
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json'
   };
 
   try {
-    // Connect to Notion
     const notion = new Client({
       auth: process.env.NOTION_API_KEY
     });
 
-    // Your database ID
     const databaseId = "31f4218fc5ae80459902e0d2446da025";
 
-    // Get data from Notion
     const response = await notion.databases.query({
       database_id: databaseId,
       filter: {
@@ -34,9 +30,7 @@ module.exports = async (req, res) => {
       page_size: 20
     });
 
-    // Format the data nicely
     const newsItems = response.results.map(page => {
-      // Helper to get text safely
       const getText = (prop) => {
         if (!prop) return '';
         if (prop.title) return prop.title[0]?.plain_text || '';
@@ -56,19 +50,23 @@ module.exports = async (req, res) => {
         return prop?.url || null;
       };
 
+      const title = getText(page.properties.Name);
+      
+      // Create clean slug from title
+      const cleanSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
       return {
-        title: getText(page.properties.Name),
-        slug: getText(page.properties.Slug),
+        title: title,
+        slug: cleanSlug,
         impact: getSelect(page.properties['Global Impact Level']),
         oilPrice: getNumber(page.properties['Oil Price Tracker']),
         affiliateId: getText(page.properties['Affiliate Link ID']),
         casualties: getNumber(page.properties['Casualty Count (Est.)']),
         publishDate: page.properties['Publish Date']?.date?.start || null,
-        originalUrl: getUrl(page.properties['Original URL'])  // ← NEW FIELD
+        originalUrl: getUrl(page.properties['Original URL'])
       };
     });
 
-    // Calculate some stats
     const stats = {
       totalArticles: newsItems.length,
       catastrophicCount: newsItems.filter(item => item.impact === 'Catastrophic').length,
@@ -76,7 +74,6 @@ module.exports = async (req, res) => {
       totalCasualties: newsItems.reduce((acc, item) => acc + (item.casualties || 0), 0)
     };
 
-    // Send back the data
     res.status(200).json({
       success: true,
       news: newsItems,
