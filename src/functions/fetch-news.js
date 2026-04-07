@@ -52,6 +52,10 @@ module.exports = async (req, res) => {
         return prop?.number || null;
       };
 
+      const getUrl = (prop) => {
+        return prop?.url || null;
+      };
+
       return {
         title: getText(page.properties.Name),
         slug: getText(page.properties.Slug),
@@ -60,6 +64,7 @@ module.exports = async (req, res) => {
         affiliateId: getText(page.properties['Affiliate Link ID']),
         casualties: getNumber(page.properties['Casualty Count (Est.)']),
         publishDate: page.properties['Publish Date']?.date?.start || null,
+        originalUrl: getUrl(page.properties['Original URL'])  // ← NEW FIELD
       };
     });
 
